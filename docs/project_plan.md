@@ -64,17 +64,17 @@ public perception.
 
 ## Planning
 
-| Day: | Task:                           | Team members:       | Deliverable: |
-| :--- | :------------------------------ | :------------------ | :----------- |
-| 1    | Application Planning and Design | All                 |              |
-| 1    | Set up Laravel project          | Wessel              |              |
-| 1    | Project plan                    | Raymon              |              |
-| 2    | Hero onboarding                 |                     |
-| 2    | Admin Dashboard                 |                     |              |
-| 2    | ELO Ratings                     |                     |              |
-| 3    | Leaderboard                     |                     |              |
-| 3    | Hero Profile pages              |                     |              |
-| 4    | Presentation                    | All (except Raymon) |              |
+| Day: | Task:                           | Team members:       | Deliverable:                                   |
+| :--- | :------------------------------ | :------------------ | :--------------------------------------------- |
+| 1    | Application Planning and Design | All                 | project plan with ERD diagram                  |
+| 1    | Set up Laravel project          | Wessel              | Laravel project                                |
+| 1    | Project plan                    | Raymon              | Markdown document with Mermaid diagram         |
+| 2    | Hero onboarding                 | Emile               | Hero registration form/user flow               |
+| 2    | Admin panel                     | Wessel              | FilamentPHP admin panel                        |
+| 2    | ELO Ratings                     | Raymon              | Algorithm implemented in PHP                   |
+| 3    | Leaderboard                     | Dylan               | Public FilamentPHP dashboard page with widgets |
+| 3    | Hero Profile pages              | Nick                | Public Hero profile pages                      |
+| 4    | Presentation                    | All (except Raymon) | Presentation                                   |
 
 ## Technologies
 
@@ -86,7 +86,7 @@ used to scaffold common web application components.
 
 The web platform will have components with distinct areas of focus that will
 intercommunicate. These are the admin dashboard for administrative work, the onboarding
-form for new Hero registration, a public leaderboard displaying the live ELO Ratinkgs and
+form for new Hero registration, a public leaderboard displaying the live ELO Ratings and
 noteworthy events.
 
 ### Database design
