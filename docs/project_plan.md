@@ -97,104 +97,54 @@ entities that make up the backbone of this application.
 ```mermaid
 erDiagram
 
-Type {
+Hero {
     bigint id
-    string name
-}
-
-Generation {
-    bigint id
-    int number
-}
-
-
-Pokemon_Type {
-    bigint generation_id
-    bigint pokemon_id
-}
-
-Ability {
-    string name
-    string description
-    int power
-}
-
-Move {
-    string name
-    string description
-    int power
-}
-
-Pokemon {
-    int id
-    bigint generation_id
-    bigint next_generation_id
-    string name
-    string description
-    string image_url
-    int hp
-    int attack
-    int defense
-    int speed
-    int special_attack
-    int special_defense
-}
-
-Ability_Pokemon {
-    bigint ability_id
-    bigint pokemon_id
-}
-
-Move_Pokemon {
-    bigint move_id
-    bigint pokemon_id
+    enum review_status
+    bigint reviewer_id
+    bigint user_id
+    string first_name
+    string infix
+    string last_name
+    string hero_alias
+    unsigned_int elo_rating
+    enum hero_rank
+    unsigned_int age
+    string email
+    string phone_number
+    string emergency_contact
+    text backstory
+    text motivation
 }
 
 User {
-    int id
+    bigint id
     string username
     string password
-    string email
-    string remember_token
-    timestamp created_at
-    timestamp updated_at
+    bool is_admin
 }
 
-User_Pokemon {
-    bigint pokemon_id
-    bigint user_id
+Duel {
+    bigint hero_1_id
+    unsigned_int hero_1_rating
+    bigint hero_2_id
+    unsigned_int hero_2_rating
+    bigint winner_id
+    datetime date
 }
 
-PersonalAccessToken {
+HeroicFeat {
     bigint id
-    string tokenable_type
-    bigint tokenable_id
-    string name
-    string token
-    text abilities
-    timestamp last_used_at
-    timestamp expires_at
-    timestamp created_at
-    timestamp updated_at
+    bigint hero_id
+    text description
+    datetime performed_at
+    enum review_status
+    bigint reviewer_id
 }
 
-
-Generation ||--o{ Pokemon : "has many"
-Type }|--|{ Pokemon_Type : "has many"
-Pokemon_Type }|--|{ Pokemon : "has many"
-
-Ability }|--|{ Ability_Pokemon : "has many"
-Ability_Pokemon }|--|{ Pokemon : "has many"
-
-Move }|--|{ Move_Pokemon : "has many"
-Move_Pokemon }|--|{ Pokemon : "has many"
-
-Pokemon |o--o| Pokemon : "has one next_evolution"
-
-User |o--o| PersonalAccessToken : "has many"
-User |o--o{ Pokemon : "has many"
-
-User }o--o{ User_Pokemon : "has many"
-User_Pokemon }o--o{ Pokemon : "has many"
+Hero ||--o{ Duel : "has many"
+Hero ||--|| User : "has one"
+Hero ||--o{ HeroicFeat : "has many"
+User ||--o{ HeroicFeat : "Admin has reviewed"
+User ||--o{ Hero : "Admin has reviewed"
 
 ```
