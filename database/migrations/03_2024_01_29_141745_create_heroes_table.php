@@ -17,10 +17,17 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->string('name');
             $table->string('hero_alias');
+            $table->unsignedInteger('age');
+            $table->string('email');
+            $table->string('phone_number');
             $table->string('emergency_contact');
             $table->text('backstory');
             $table->text('motivation');
+            $table->string('primary_ability');
+            $table->string('secondary_abilities');
+            $table->string('limitations');
             $table->unsignedInteger('elo_rating')
                 ->default(1200);
             $table->enum('hero_rating', ['C', 'B', 'A', 'S'])
