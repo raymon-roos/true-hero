@@ -7,7 +7,7 @@ Platform And Social Network, developed by Caped Compiler Commandos.
 
 **Requirements**
 
--   PHP 8.2 or higher
+-   PHP 8.1 or higher
 -   MariaDB 11.w or higher
 
 Make sure you have a MariaDB user with at least read/update and create table permissions.
