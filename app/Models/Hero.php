@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Enums\HeroRating;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Hero extends Model
 {
@@ -28,6 +30,19 @@ class Hero extends Model
     protected $casts = [
         'hero_ratin' => HeroRating::class,
     ];
+
+    public static function search(string $search): Collection
+    {
+        return self::query()
+            ->where(
+                fn (Builder $query) => $query
+                ->where('hero_alias', 'like', $search)
+                ->orWhereRelation('user', 'first_name', 'like', $search)
+                ->orWhereRelation('user', 'last_name', 'like', $search)
+            )
+            ->limit(50)
+            ->get();
+    }
 
     public function user(): BelongsTo
     {
