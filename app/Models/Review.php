@@ -18,7 +18,7 @@ class Review extends Model
      */
     protected $guarded = [];
 
-    public function commentable(): MorphTo
+    public function reviewable(): MorphTo
     {
         return $this->morphTo();
     }
