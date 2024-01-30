@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\HeroRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,15 @@ class Hero extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'hero_ratin' => HeroRating::class,
+    ];
 
     public function user(): BelongsTo
     {

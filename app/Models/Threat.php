@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ThreatLevel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,6 +16,16 @@ class Threat extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'level' => ThreatLevel::class,
+    ];
+
 
     public function nefariousActions(): HasMany
     {
