@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('infix')
                 ->nullable();
             $table->string('last_name');
-            $table->unsignedInteger('age')
+            $table->date('date_of_birth')
                 ->nullable();
             $table->string('phone_number')
                 ->nullable();
