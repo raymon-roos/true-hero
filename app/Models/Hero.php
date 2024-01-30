@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Hero extends Model
 {
@@ -49,6 +50,11 @@ class Hero extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function eligibleOpponents(): HasMany
+    {
+        return $this->hasMany(Hero::class); // this doesn't do anything, it's just to trick filament
+    }
+
     public function heroicDeeds(): HasMany
     {
         return $this->hasMany(HeroicDeed::class);
@@ -57,5 +63,11 @@ class Hero extends Model
     public function reviews(): MorphMany
     {
         return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    public function reviewers(): HasManyThrough
+    {
+        return $this->hasManyThrough(User::class, Review::class, 'reviewable_id', 'id', 'id', 'reviewer_id')
+            ->where('reviewable_type', $this::class);
     }
 }

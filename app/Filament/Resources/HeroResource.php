@@ -65,7 +65,7 @@ class HeroResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\EligibleOponentsRelationManager::class,
         ];
     }
 
