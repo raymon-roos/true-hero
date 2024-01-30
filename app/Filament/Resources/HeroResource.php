@@ -31,7 +31,8 @@ class HeroResource extends Resource
                 Components\RichEditor::make('motivation'),
                 Components\TextInput::make('emergency_contact'),
                 Components\Select::make('hero_rating')
-                    ->options(HeroRating::assocValues()),
+                    ->options(HeroRating::assocValues())
+                    ->enum(HeroRating::class),
                 Components\TextInput::make('elo_rating')
                     ->disabled(),
             ]);
