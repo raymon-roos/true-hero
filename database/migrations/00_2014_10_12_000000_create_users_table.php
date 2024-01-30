@@ -25,7 +25,8 @@ return new class extends Migration
                 ->nullable();
             $table->string('phone_number')
                 ->nullable();
-            $table->boolean('is_admin');
+            $table->boolean('is_admin')
+                ->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
