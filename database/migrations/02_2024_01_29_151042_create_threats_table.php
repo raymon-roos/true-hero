@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('threats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('level', ['wolf', 'tiger', 'demon', 'dragon', 'god']);
+            $table->enum('level', ['wolf', 'tiger', 'demon', 'dragon', 'god'])
+                ->default('wolf');
             $table->timestamps();
         });
     }

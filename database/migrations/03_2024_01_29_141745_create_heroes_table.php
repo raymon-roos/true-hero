@@ -23,7 +23,8 @@ return new class extends Migration
             $table->text('motivation');
             $table->unsignedInteger('elo_rating')
                 ->default(1200);
-            $table->enum('hero_rating', ['c', 'b', 'a', 's']);
+            $table->enum('hero_rating', ['C', 'B', 'A', 'S'])
+                ->default('C');
             $table->timestamps();
         });
     }
