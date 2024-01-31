@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ReviewStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,13 @@ return new class extends Migration
             $table->string('status');
             $table->timestamps();
         });
+
+        ReviewStatus::insertOrIgnore([
+            ['status' => 'pending'],
+            ['status' => 'accepted'],
+            ['status' => 'rejected'],
+            ['status' => 'requires verification'],
+        ]);
     }
 
     /**
