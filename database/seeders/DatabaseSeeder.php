@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             HeroSeeder::class,
             ThreatSeeder::class,
+            HeroicDeedSeeder::class,
         ]);
     }
 }
