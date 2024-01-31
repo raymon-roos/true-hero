@@ -19,6 +19,7 @@ class HeroFactory extends Factory
     {
         return [
             'hero_alias' => fake()->unique()->userName(),
+            'superpower' => fake()->word(),
             'emergency_contact' => fake()->unique()->phoneNumber(),
             'backstory' => fake()->realTextBetween(200, 600),
             'motivation' => fake()->realTextBetween(100, 400),

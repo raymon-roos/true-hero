@@ -20,6 +20,9 @@ return new class extends Migration
                 ->restrictOnDelete();
             $table->string('hero_alias')
                 ->unique();
+            $table->string('superpower');
+            $table->string('profile_picture')
+                ->nullable();
             $table->string('emergency_contact');
             $table->text('backstory');
             $table->text('motivation');
