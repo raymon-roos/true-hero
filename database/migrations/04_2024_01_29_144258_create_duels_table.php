@@ -16,16 +16,15 @@ return new class extends Migration
             $table->foreignId('hero_1_id')
                 ->constrained('heroes')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
             $table->foreignId('hero_2_id')
                 ->constrained('heroes')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
             $table->foreignId('winner_id')
                 ->constrained('heroes')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->datetime('occurred_at');
+                ->restrictOnDelete();
             $table->timestamps();
         });
     }
