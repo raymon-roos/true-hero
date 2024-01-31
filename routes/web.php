@@ -44,7 +44,7 @@ Route::get('/', function () {
                     "name" => "Thunderstrike",
                     "superpower" => "Control over electricity",
                     "elo_score" => 1820,
-                    "image_path" => "/img/thunderstrike.png"    
+                    "image_path" => "/img/thunderstrike.png"
                 ],
                 [
                     "name" => "Mindwave",
@@ -78,26 +78,24 @@ Route::get('/', function () {
                 // ]
             ]
         ]);
-    });
+});
 
-    Route::get('index', function() {
+    Route::get('index', function () {
         return view('index');
     });
 
-    Route::get('page1', function() {
+    Route::get('page1', function () {
         return view('page1');
     });
 
-    Route::get('page2', function() {
+    Route::get('page2', function () {
         return view('page2');
     });
 
-    Route::get('page3', function() {
+    Route::get('page3', function () {
         return view('page3');
     });
 
-    Route::get('success', function() {
+    Route::get('success', function () {
         return view('success');
     });
-
-    
