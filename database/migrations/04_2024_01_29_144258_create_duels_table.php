@@ -22,6 +22,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->foreignId('winner_id')
+                ->nullable()
                 ->constrained('heroes')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
