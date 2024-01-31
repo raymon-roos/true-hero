@@ -15,9 +15,6 @@ class HeroSeeder extends Seeder
      */
     public function run(): void
     {
-        $heroRatings = HeroRating::cases();
-        shuffle($heroRatings);
-
         $userIds = User::where('is_admin', false)
             ->inRandomOrder()
             ->pluck('id')
