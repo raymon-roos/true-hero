@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -21,78 +22,49 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('username')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('infix')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('age')
-                    ->numeric(),
-                Forms\Components\TextInput::make('phone_number')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\Toggle::make('is_admin')
-                    ->required(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('username')
+                ->unique()
+                ->required(),
+            Forms\Components\TextInput::make('email')
+                ->email()
+                ->unique()
+                ->required(),
+            Forms\Components\TextInput::make('password')
+                ->password()
+                ->required()
+                ->dehydrated(fn ($state) => filled($state))
+                ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                ->visible(fn ($livewire) => $livewire instanceof Pages\CreateUser),
+            Forms\Components\TextInput::make('first_name')
+                ->required(),
+            Forms\Components\TextInput::make('last_name')
+                ->required(),
+            Forms\Components\DatePicker::make('date_of_birth'),
+            Forms\Components\TextInput::make('phone_number'),
+            Forms\Components\Toggle::make('is_admin'),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('username')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('first_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('infix')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('last_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('age')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('phone_number')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('is_admin')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
+        return $table->columns([
+            Tables\Columns\TextColumn::make('username')->sortable(),
+            Tables\Columns\TextColumn::make('email')->sortable(),
+            Tables\Columns\TextColumn::make('first_name'),
+            Tables\Columns\TextColumn::make('last_name'),
+            Tables\Columns\ToggleColumn::make('is_admin')->sortable(),
+        ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
@@ -110,6 +82,15 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getNavigation(): array
+    {
+        return [
+            'label' => 'Users',
+            'sort' => 1,
+            'icon' => 'heroicon-o-users',
         ];
     }
 }

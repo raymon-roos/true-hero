@@ -65,4 +65,14 @@ class User extends Authenticatable implements FilamentUser, HasName
     {
         return $this->hasMany(Review::class, foreignKey: 'reviewer_id');
     }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getNameAttribute(): string
+    {
+        return trim("{$this->first_name} {$this->last_name}");
+    }
 }
