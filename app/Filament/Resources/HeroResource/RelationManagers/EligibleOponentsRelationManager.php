@@ -2,19 +2,15 @@
 
 namespace App\Filament\Resources\HeroResource\RelationManagers;
 
-use App\Filament\Resources\DuelResource;
 use App\Models\Duel;
 use App\Models\Hero;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Columns\Summarizers\Summarizer;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Session;
-use Livewire\Component;
 
 class EligibleOponentsRelationManager extends RelationManager
 {
@@ -48,8 +44,10 @@ class EligibleOponentsRelationManager extends RelationManager
                 Tables\Columns\ImageColumn::make('profile_picture')
                     ->circular(),
                 Tables\Columns\TextColumn::make('hero_alias'),
-                Tables\Columns\TextColumn::make('elo_rating')
-                    ->numeric(),
+                Tables\Columns\TextColumn::make('superpower')
+                    ->wrap(),
+                Tables\Columns\TextColumn::make('hero_rating'),
+                Tables\Columns\TextColumn::make('elo_rating'),
             ])
             ->filters([
                 //
@@ -79,12 +77,18 @@ class EligibleOponentsRelationManager extends RelationManager
                                 $record->id => $record->hero_alias,
                             ])
                             ->default($record->id),
+                        Forms\Components\DateTimePicker::make('occurred_at')
+                            ->seconds(false)
+                            ->maxDate($now = now())
+                            ->beforeOrEqual($now)
+                            ->default($now),
                     ])
                     ->action(function (array $data, Hero $record) {
                         Duel::create([
-                        'hero_1_id' => $this->ownerRecord->id,
-                        'hero_2_id' => $record->id,
-                        'winner_id' => $data['winner_id'],
+                            'hero_1_id' => $this->ownerRecord->id,
+                            'hero_2_id' => $record->id,
+                            'winner_id' => $data['winner_id'],
+                            'occurred_at' => $data['occurred_at'],
                         ]);
                     })
             ])

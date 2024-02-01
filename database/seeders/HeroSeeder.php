@@ -16,7 +16,7 @@ class HeroSeeder extends Seeder
     {
         $userIds = User::pluck('id');
 
-        Hero::factory()
+        Hero::factory(7)
             ->sequence(
                 [
                     'hero_alias' => 'Pyroclast',

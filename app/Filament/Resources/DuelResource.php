@@ -12,9 +12,7 @@ use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\DB;
 
 class DuelResource extends Resource
 {
@@ -65,23 +63,20 @@ class DuelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('hero_1_id')
-                    ->numeric()
+                Tables\Columns\ImageColumn::make('firstHero.profile_picture')
+                    ->circular(),
+                Tables\Columns\TextColumn::make('firstHero.hero_alias')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('hero_2_id')
-                    ->numeric()
+                Tables\Columns\ImageColumn::make('secondHero.profile_picture')
+                    ->circular(),
+                Tables\Columns\TextColumn::make('secondHero.hero_alias')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('winner.id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('winner.hero_alias')
+                    ->placeholder('draw')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('occurred_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
