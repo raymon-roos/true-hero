@@ -21,9 +21,9 @@ class RegistrationController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        session(['registration.step1' => $validatedData]);
+        session(['register.hero' => $validatedData]);
 
-        return redirect()->to('page2');
+        return redirect()->to('register-hero-step2');
     }
 
     public function storeStep2(Request $request)
@@ -33,14 +33,14 @@ class RegistrationController extends Controller
             'motivation' => 'required|max:150',
         ]);
 
-        session(['registration.step2' => $validatedData]);
+        session(['register.hero.step2' => $validatedData]);
 
-        return redirect()->to('page3');
+        return redirect()->to('register-hero-step3');
     }
 
     public function storeStep3(Request $request)
     {
-        $registrationData = array_merge(session('registration.step1'), session('registration.step2'));
+        $registrationData = array_merge(session('register.hero.step1'), session('register.hero.step2'));
 
         $validatedData = $request->validate([
             'primary_ability' => 'required|max:255',
@@ -69,7 +69,7 @@ class RegistrationController extends Controller
             'hero_rating' => 'C',
         ]);
 
-        session()->forget(['registration.step1', 'registration.step2']);
+        session()->forget(['register.hero.step1', 'register.hero.step2']);
 
         return redirect()->to('success');
     }

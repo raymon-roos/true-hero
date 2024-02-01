@@ -8,7 +8,7 @@
             story and your motivation for becoming a hero. <em>Try to keep it short and clear.</em></p>
     </header>
 
-    <form action="{{ route('register.step2') }}" method="POST">
+    <form action="{{ route('register.hero.step2') }}" method="POST">
         @csrf
         <div class="my-6">
             <label for="origin_story" class="block mb-2 text-sm font-medium text-gray-50">Write your origin story

@@ -8,7 +8,7 @@
             as your name, alias etc...</p>
     </header>
 
-    <form action="{{ route('register.step1') }}" method="POST">
+    <form action="{{ route('register.hero') }}" method="POST">
         @csrf
         <div class="my-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-50 dark:text-gray-50">Legal name:</label>
