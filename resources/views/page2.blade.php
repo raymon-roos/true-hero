@@ -25,39 +25,48 @@
             <button type="submit" class="text-gray-50 border-2 border-red-700 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Next ></button>
         </form>
 
-        <script>
-            let backstoryElement = document.getElementById('origin_story');
-            let backstoryElementClassName = backstoryElement.className;
+    <script>
+    let backstoryElement = document.getElementById('origin_story');
+    let backstoryElementClassName = backstoryElement.className;
 
-            const errorClassName = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500";
+    const errorClassName =
+        "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500";
 
-            let errorElementB = document.createElement('p');
-            errorElementB.className = "mt-2 text-sm text-red-600 dark:text-red-500";
-            errorElementB.innerText = "You have exceeded the maximum word limit.";
+    let errorElementB = document.createElement('p');
+    errorElementB.className = "mt-2 text-sm text-red-600 dark:text-red-500";
+    errorElementB.innerText = "You have exceeded the maximum word limit.";
 
-            backstoryElement.after(errorElementB);
+    backstoryElement.after(errorElementB);
 
+    errorElementB.style.display = 'none';
+
+    backstoryElement.addEventListener('input', function() {
+        if (backstoryElement.value.split(' ').length > 300) {
+            backstoryElement.className = errorClassName;
+            errorElementB.style.display = 'block';
+        } else {
+            backstoryElement.className = backstoryElementClassName;
             errorElementB.style.display = 'none';
+        }
+    });
 
-            backstoryElement.addEventListener('input', function() {
-                if (backstoryElement.value.split(' ').length > 300) {
-                    backstoryElement.className = errorClassName;    
-                    errorElementB.style.display = 'block';
-                } else {
-                    backstoryElement.className = backstoryElementClassName;
-                    errorElementB.style.display = 'none';
-                }
-            });
+    let motivationElement = document.getElementById('motivation');
+    let motivationElementClassName = motivationElement.className;
 
-            let motivationElement = document.getElementById('motivation');
-            let motivationElementClassName = motivationElement.className;
-            
-            let errorElementM = document.createElement('p');
-            errorElementM.className = "mt-2 text-sm text-red-600 dark:text-red-500";
-            errorElementM.innerText = "You have exceeded the maximum word limit.";
+    let errorElementM = document.createElement('p');
+    errorElementM.className = "mt-2 text-sm text-red-600 dark:text-red-500";
+    errorElementM.innerText = "You have exceeded the maximum word limit.";
 
-            motivationElement.after(errorElementM);
+    motivationElement.after(errorElementM);
 
+    errorElementM.style.display = 'none';
+
+    motivationElement.addEventListener('input', function() {
+        if (motivationElement.value.split(' ').length > 150) {
+            motivationElement.className = errorClassName;
+            errorElementM.style.display = 'block';
+        } else {
+            motivationElement.className = motivationElementClassName;
             errorElementM.style.display = 'none';
 
             motivationElement.addEventListener('input', function() {

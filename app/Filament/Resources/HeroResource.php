@@ -27,8 +27,13 @@ class HeroResource extends Resource
         return $form
             ->schema([
                 Components\TextInput::make('hero_alias'),
+                Components\TextInput::make('superpower'),
                 Components\RichEditor::make('backstory'),
                 Components\RichEditor::make('motivation'),
+                Components\FileUpload::make('profile_picture')
+                    ->image()
+                    ->directory('hero-profile-pictures')
+                    ->moveFiles(),
                 Components\TextInput::make('emergency_contact'),
                 Components\Select::make('hero_rating')
                     ->options(HeroRating::assocValues())
@@ -42,6 +47,8 @@ class HeroResource extends Resource
     {
         return $table
             ->columns([
+                Columns\ImageColumn::make('profile_picture')
+                    ->circular(),
                 Columns\TextColumn::make('hero_alias'),
                 Columns\TextColumn::make('backstory'),
                 Columns\TextColumn::make('motivation'),

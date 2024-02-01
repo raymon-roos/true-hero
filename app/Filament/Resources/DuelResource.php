@@ -26,30 +26,38 @@ class DuelResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('firstHero')
+                Forms\Components\Select::make('hero_1_id')
+                    ->label('First hero')
                     ->required()
-                    ->live()
-                    ->relationship(titleAttribute: 'hero_alias')
+                    ->live(onBlur: true)
+                    ->default(request()->input('hero2'))
                     ->searchable()
                     ->getSearchResultsUsing(fn (string $search): array => Hero::search("%{$search}%")
                         ->pluck('hero_alias', 'id')
                         ->toArray()),
-                Forms\Components\Select::make('secondHero')
+                Forms\Components\Select::make('hero_2_id')
+                    ->label('First hero')
                     ->required()
-                    ->live()
-                    ->relationship(titleAttribute: 'hero_alias')
+                    ->live(onBlur: true)
+                    ->default(request()->input('hero2'))
                     ->searchable()
-                    ->getSearchResultsUsing(fn (string $search): array => Hero::search("{$search}")
+                    ->getSearchResultsUsing(fn (string $search): array => Hero::search("%{$search}%")
                             ->pluck('hero_alias', 'id')
                             ->toArray()),
-                Forms\Components\Select::make('winner')
-                    ->relationship(titleAttribute: 'hero_alias')
-                    ->live()
+                Forms\Components\Select::make('winner_id')
+                    ->label('Winner')
+                    ->live(onBlur: true)
+                    ->disabled(fn (Get $get) => empty($get('hero_1_id')) || empty($get('hero_2_id')))
                     ->options(fn (Get $get) => [
-                        $get('firstHero') => Hero::find($get('firstHero'), 'hero_alias')->hero_alias,
-                        $get('secondHero') => Hero::find($get('secondHero'), 'hero_alias')->hero_alias,
-                    ])
-                    ->required(),
+                        $get('hero_1_id') => Hero::find($get('hero_1_id'), 'hero_alias')?->hero_alias ?? 'choose participants first',
+                        $get('hero_2_id') => Hero::find($get('hero_2_id'), 'hero_alias')?->hero_alias ?? 'choose participants first',
+                    ]),
+                Forms\Components\DateTimePicker::make('occurred_at')
+                    ->seconds(false)
+                    ->maxDate($now = now())
+                    ->beforeOrEqual($now)
+                    ->default($now),
+
             ]);
     }
 
