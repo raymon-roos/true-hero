@@ -47,6 +47,8 @@ class HeroResource extends Resource
     {
         return $table
             ->columns([
+                Columns\ImageColumn::make('profile_picture')
+                    ->circular(),
                 Columns\TextColumn::make('hero_alias'),
                 Columns\TextColumn::make('backstory'),
                 Columns\TextColumn::make('motivation'),
