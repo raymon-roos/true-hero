@@ -29,16 +29,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('index', function() { return view('index'); });
-Route::get('success', function() { return view('success'); });
+Route::get('index', function() { return view('index'); })->name('index');
+Route::get('success', function() { return view('success'); })->name('success');
 
-// Hero Registration Route
+// Hero Registration Routes
 Route::get('register-hero', function() { return view('register-hero'); })->name('register.hero');
-Route::post('register-hero', [RegistrationController::class, 'storeStep1']);
+Route::post('register-hero', [RegistrationController::class, 'storeStep1'])->name('register.hero.step1');
 
-// You can keep the URLs for step 2 and step 3 simple as well, such as:
 Route::get('register-hero/step2', function() { return view('register-hero-step2'); })->name('register.hero.step2');
-Route::post('register-hero/step2', [RegistrationController::class, 'storeStep2']);
+Route::post('register-hero/step2', [RegistrationController::class, 'storeStep2'])->name('register.hero.step2');
 
 Route::get('register-hero/step3', function() { return view('register-hero-step3'); })->name('register.hero.step3');
-Route::post('register-hero/step3', [RegistrationController::class, 'storeStep3']);
+Route::post('register-hero/step3', [RegistrationController::class, 'storeStep3'])->name('register.hero.step3');

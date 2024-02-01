@@ -18,12 +18,11 @@ class RegistrationController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
             'emergency_contact' => 'required',
-            'password' => 'required|min:8',
         ]);
 
-        session(['register.hero' => $validatedData]);
+        session(['registration.step1' => $validatedData]);
 
-        return redirect()->to('register-hero-step2');
+        return redirect()->route('register.hero.step2');
     }
 
     public function storeStep2(Request $request)
@@ -33,14 +32,15 @@ class RegistrationController extends Controller
             'motivation' => 'required|max:150',
         ]);
 
-        session(['register.hero.step2' => $validatedData]);
+        session(['registration.step2' => $validatedData]);
 
-        return redirect()->to('register-hero-step3');
+        return redirect()->route('register.hero.step3');
     }
 
     public function storeStep3(Request $request)
     {
-        $registrationData = array_merge(session('register.hero.step1'), session('register.hero.step2'));
+      //  dd($request->all());
+        $registrationData = array_merge(session('registration.step1'), session('registration.step2'));
 
         $validatedData = $request->validate([
             'primary_ability' => 'required|max:255',
@@ -49,8 +49,9 @@ class RegistrationController extends Controller
         ]);
 
         $user = User::create([
+            'username' => $registrationData['name'],
             'email' => $registrationData['email'],
-            'password' => Hash::make($registrationData['password']),
+            'password' => Hash::make('defaultPassword'),
             'first_name' => explode(' ', $registrationData['name'], 2)[0],
             'last_name' => explode(' ', $registrationData['name'], 2)[1] ?? '',
             'date_of_birth' => $registrationData['date_of_birth'],
@@ -69,8 +70,8 @@ class RegistrationController extends Controller
             'hero_rating' => 'C',
         ]);
 
-        session()->forget(['register.hero.step1', 'register.hero.step2']);
+        session()->forget(['registration.step1', 'registration.step2']);
 
-        return redirect()->to('success');
+        return redirect()->route('success');
     }
 }

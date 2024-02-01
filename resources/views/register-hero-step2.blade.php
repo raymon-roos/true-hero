@@ -13,7 +13,7 @@
         <div class="my-6">
             <label for="origin_story" class="block mb-2 text-sm font-medium text-gray-50">Write your origin story
                 here:</label>
-            <textarea id="origin_story" rows="4"
+            <textarea id="origin_story" name="origin_story" rows="4"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"></textarea>
             <p id="emergency_contact-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Max. 300 words
             </p>
@@ -22,7 +22,7 @@
         <div class="my-6">
             <label for="motivation" class="block mb-2 text-sm font-medium text-gray-50">Write your motivation for
                 heroism here:</label>
-            <textarea id="motivation" rows="4"
+            <textarea id="motivation" name="motivation" rows="4"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"></textarea>
             <p id="emergency_contact-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Max. 150 words
             </p>
@@ -84,11 +84,8 @@
     });
 
     let backbuttonElement = document.getElementById("backbutton");
-
-    prevPageLink = window.location.href.replace('page2', 'page1');
-
     backbuttonElement.addEventListener("click", function() {
-        window.location.replace(prevPageLink);
+        window.location.href = '{{ route("register.hero") }}';
     });
     </script>
 </main>

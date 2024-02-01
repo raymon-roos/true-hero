@@ -7,18 +7,28 @@
         <p class="my-4 text-lg text-gray-500">On this page you will describe your abilities and limitations.</p>
     </header>
 
-    <form action="success">
+
+    <<form action="{{ route('register.hero.step3') }}" method="POST">
+        @csrf
+        <div class="my-6">
+            <label for="superpower"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Superpower:</label>
+            <input type="text" id="superpower" name="superpower"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                required>
+        </div>
+
         <div class="my-6">
             <label for="primary_ability" class="block mb-2 text-sm font-medium text-gray-50">Enter your primary
                 ability:</label>
-            <input type="text" id="primary_ability"
+            <input type="text" id="primary_ability" name="primary_ability"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-50 dark:focus:ring-red-500 dark:focus:border-red-500">
         </div>
 
         <div class="my-6">
             <label for="secondary_abilities" class="block mb-2 text-sm font-medium text-gray-50">Enter any secondary
                 abilities</label>
-            <input type="text" id="secondary_abilities"
+            <input type="text" id="secondary_abilities" name="secondary_abilities"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-50 dark:focus:ring-red-500 dark:focus:border-red-500">
         </div>
 
@@ -35,16 +45,13 @@
 
                 <button type="submit"
                     class="border-2 border-red-700 text-gray-50 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Done</button>
-    </form>
+                </form>
 
-    <script>
-    let backbuttonElement = document.getElementById("backbutton");
-
-    prevPageLink = window.location.href.replace('page3', 'page2');
-
-    backbuttonElement.addEventListener("click", function() {
-        window.location.replace(prevPageLink);
-    });
-    </script>
+                <script>
+                let backbuttonElement = document.getElementById("backbutton");
+                backbuttonElement.addEventListener("click", function() {
+                    window.location.href = '{{ route("register.hero.step2") }}';
+                });
+                </script>
 </main>
 @endsection
