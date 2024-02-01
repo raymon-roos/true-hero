@@ -18,4 +18,4 @@ The `.env.example` file comes with credentials according to Bit Academy conventi
 2. `composer install && npm install && npm run build` to download dependencies.
 3. `cp .env.example .env && php artisan key:generate` to set up environment variables.
 4. `php artisan migrate:fresh --seed` to fill some placeholder data into the database.
-5. `php aritisan serve` to start a local development http server.
+5. `php artisan serve` to start a local development http server.
