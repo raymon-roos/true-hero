@@ -23,7 +23,7 @@
                             <a href="/table"><h1 x-show="open"
                                 class="text-4xl font-extrabold cursor-pointer bg-red-800 ease-in-out duration-500 hover:translate-x-3 mb-1 text-white px-2 py-4 rounded-bl-lg border-2 border-black rounded-tr-lg z-100 opacity-100 blur-none">
                                 Table</h1></a>
-                            <a href="/dashboard"><h1 x-show="open"
+                            <a href="/admin"><h1 x-show="open"
                                 class="text-4xl font-extrabold cursor-pointer bg-red-800 ease-in-out duration-500 hover:translate-x-3 mb-1 text-white px-2 py-4 rounded-bl-lg border-2 border-black rounded-tr-lg z-100 opacity-100 blur-none">
                                 Dashboard</h1></a>
                             <a href="/register"><h1 x-show="open"

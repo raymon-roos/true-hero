@@ -63,8 +63,8 @@ Route::get('/', fn () => view('leaderboard', ['heroes' => $heroes]));
 
 Route::get('/table', fn () => view('table', ['heroes' => $heroes]));
 
-Route::get('index', fn () => view('index'))
-    ->name('index');
+Route::get('register', fn () => view('index'))
+    ->name('register');
 
 Route::get('register-hero', fn () => view('register-hero'))
     ->name('register.hero');

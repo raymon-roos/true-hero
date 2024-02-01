@@ -39,7 +39,6 @@ class RegistrationController extends Controller
 
     public function storeStep3(Request $request)
     {
-      //  dd($request->all());
         $registrationData = array_merge(session('registration.step1'), session('registration.step2'));
 
         $validatedData = $request->validate([
