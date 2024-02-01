@@ -26,10 +26,10 @@
         </div>
 
         <div class="my-6">
-            <label for="date_of_birth" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of
-                birth:</label>
-            <input type="date" id="date_of_birth"
-                class="int bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password:</label>
+            <input type="password" id="password" name="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                required>
         </div>
 
         <h4 class="text-2xl font-bold dark:text-white">Contact info</h4>
@@ -57,6 +57,13 @@
                     class="varchar bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
             </div>
+        </div>
+
+        <div class="my-6">
+            <label for="date_of_birth" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of
+                birth:</label>
+            <input type="date" id="date_of_birth"
+                class="int bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
         </div>
 
         <div class="my-6">
