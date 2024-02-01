@@ -24,4 +24,16 @@ class RegistrationController extends Controller
 
         return redirect()->to('page2');
     }
+
+    public function storeStep2(Request $request)
+    {
+        $validatedData = $request->validate([
+            'origin_story' => 'required|max:300',
+            'motivation' => 'required|max:150',
+        ]);
+
+        session(['registration.step2' => $validatedData]);
+
+        return redirect()->to('page3');
+    }
 }
