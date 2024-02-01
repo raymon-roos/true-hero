@@ -24,13 +24,14 @@ class HeroicDeedResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('hero_id')
-                    ->relationship('hero', 'id')
+                    ->relationship('hero', 'hero_alias')
                     ->required(),
                 Forms\Components\Select::make('threat_id')
-                    ->relationship('threat', 'id'),
+                    ->relationship('threat', 'name')
+                    ->required(),
                 Forms\Components\Textarea::make('description')
                     ->required()
-                    ->maxLength(65535)
+                    ->maxLength(50000)
                     ->columnSpanFull(),
                 Forms\Components\DateTimePicker::make('performed_at')
                     ->required(),
@@ -41,11 +42,16 @@ class HeroicDeedResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('hero.id')
+                Tables\Columns\ImageColumn::make('hero.profile_picture')
+                    ->circular(),
+                Tables\Columns\TextColumn::make('hero.hero_alias')
+                    ->label('Alias')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('threat.id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('threat.name')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('threat.level')
+                    ->label('Threat level')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('performed_at')
                     ->dateTime()
