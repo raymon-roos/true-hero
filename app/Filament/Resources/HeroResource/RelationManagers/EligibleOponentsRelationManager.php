@@ -2,19 +2,15 @@
 
 namespace App\Filament\Resources\HeroResource\RelationManagers;
 
-use App\Filament\Resources\DuelResource;
 use App\Models\Duel;
 use App\Models\Hero;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Columns\Summarizers\Summarizer;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Session;
-use Livewire\Component;
 
 class EligibleOponentsRelationManager extends RelationManager
 {
@@ -48,8 +44,10 @@ class EligibleOponentsRelationManager extends RelationManager
                 Tables\Columns\ImageColumn::make('profile_picture')
                     ->circular(),
                 Tables\Columns\TextColumn::make('hero_alias'),
-                Tables\Columns\TextColumn::make('elo_rating')
-                    ->numeric(),
+                Tables\Columns\TextColumn::make('superpower')
+                    ->wrap(),
+                Tables\Columns\TextColumn::make('hero_rating'),
+                Tables\Columns\TextColumn::make('elo_rating'),
             ])
             ->filters([
                 //

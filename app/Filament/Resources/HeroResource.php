@@ -50,10 +50,16 @@ class HeroResource extends Resource
                 Columns\ImageColumn::make('profile_picture')
                     ->circular(),
                 Columns\TextColumn::make('hero_alias'),
-                Columns\TextColumn::make('backstory'),
-                Columns\TextColumn::make('motivation'),
-                Columns\TextColumn::make('emergency_contact'),
+                Columns\TextColumn::make('superpower')
+                    ->wrap(),
+                Columns\TextColumn::make('hero_rating'),
                 Columns\TextColumn::make('elo_rating'),
+                Columns\TextColumn::make('backstory')
+                    ->limit(50)
+                    ->wrap(),
+                Columns\TextColumn::make('motivation')
+                    ->limit(40)
+                    ->wrap(),
             ])
             ->filters([
                 //
