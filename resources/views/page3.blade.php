@@ -9,6 +9,15 @@
 
     <form action="{{ route('register.step3') }}" method="POST">
         @csrf
+
+        <div class="my-6">
+            <label for="superpower"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Superpower:</label>
+            <input type="text" id="superpower" name="superpower"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                required>
+        </div>
+
         <div class="my-6">
             <label for="primary_ability" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your
                 primary ability:</label>
