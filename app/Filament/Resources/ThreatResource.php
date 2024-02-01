@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\ThreatLevel;
 use App\Filament\Resources\ThreatResource\Pages;
 use App\Filament\Resources\ThreatResource\RelationManagers;
 use App\Models\Threat;
@@ -23,7 +24,12 @@ class ThreatResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required(),
+                Forms\Components\Select::make('level')
+                    ->label('Threat level')
+                    ->options(ThreatLevel::assocValues())
+                    ->required(),
             ]);
     }
 
@@ -31,7 +37,20 @@ class ThreatResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('level')
+                    ->label('Threat level')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //
