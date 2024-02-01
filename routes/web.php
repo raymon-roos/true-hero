@@ -63,7 +63,7 @@ Route::get('/', fn () => view('leaderboard', ['heroes' => $heroes]));
 
 Route::get('/table', fn () => view('table', [ 'heroes' => $heroes]));
 
-Route::get('index', fn () => view('index'));
+Route::get('register', fn () => view('index'));
 
 Route::get('page1', fn () => view('page1'));
 
@@ -72,3 +72,4 @@ Route::get('page2', fn () => view('page2'));
 Route::get('page3', fn () => view('page3'));
 
 Route::get('success', fn () => view('success'));
+
