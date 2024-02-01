@@ -1,26 +1,28 @@
 @extends('/../layouts.app')
 
 @section('content')
-    <main class="relative w-screen h-screen flex flex-col items-center bg-yellow-50">
+    <main class="min-h-screen min-w-screen flex flex-col items-center p-10 bg-black">
         <header class="flex flex-col items-center">
-            <h2 class="text-4xl font-extrabold dark:text-white">Hero registration process - 2/3</h2>
+            <h2 class="text-4xl font-extrabold text-gray-50">Hero registration process - 2/3</h2>
             <p class="my-4 text-lg text-gray-500">On this page you will describe how you came to this point; your origin story and your motivation for becoming a hero. <em>Try to keep it short and clear.</em></p>
         </header>
 
         <form action="page3">
             <div class="my-6">
-                <label for="origin_story" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write your origin story here:</label>
+                <label for="origin_story" class="block mb-2 text-sm font-medium text-gray-50">Write your origin story here:</label>
                 <textarea id="origin_story" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"></textarea>
                 <p id="emergency_contact-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Max. 300 words</p>
             </div>
 
             <div class="my-6">
-                <label for="motivation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write your motivation for heroism here:</label>
+                <label for="motivation" class="block mb-2 text-sm font-medium text-gray-50">Write your motivation for heroism here:</label>
                 <textarea id="motivation" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"></textarea>
                 <p id="emergency_contact-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Max. 150 words</p>
             </div>
 
-            <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Next ></button>
+            <button id="backbutton" type="button" class="px-5 py-2.5 text-sm font-medium text-red-600 hover:text-gray-50 border-2 border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">< Previous</button>
+
+            <button type="submit" class="text-gray-50 border-2 border-red-700 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Next ></button>
         </form>
 
         <script>
@@ -68,6 +70,13 @@
                 }
             });
 
+            let backbuttonElement = document.getElementById("backbutton");
+
+            prevPageLink = window.location.href.replace('page2', 'page1');
+
+            backbuttonElement.addEventListener("click", function() {
+                window.location.replace(prevPageLink);
+            });
         </script>
     </main>
 @endsection
