@@ -26,6 +26,7 @@ return new class extends Migration
                 ->constrained('heroes')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
+            $table->datetime('occurred_at');
             $table->timestamps();
         });
     }
