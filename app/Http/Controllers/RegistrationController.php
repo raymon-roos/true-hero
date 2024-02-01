@@ -18,6 +18,7 @@ class RegistrationController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
             'emergency_contact' => 'required',
+            'password' => 'required|min:8',
         ]);
 
         session(['registration.step1' => $validatedData]);
