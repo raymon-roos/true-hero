@@ -29,7 +29,7 @@ class Hero extends Model
      * @var array
      */
     protected $casts = [
-        'hero_ratin' => HeroRating::class,
+        'hero_rating' => HeroRating::class,
     ];
 
     public static function search(string $search): Collection
