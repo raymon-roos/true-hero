@@ -87,7 +87,7 @@ class EligibleOponentsRelationManager extends RelationManager
                         Duel::create([
                             'hero_1_id' => $this->ownerRecord->id,
                             'hero_2_id' => $record->id,
-                            'winner_id' => $data['winner_id'],
+                            'winner_id' => $data['winner_id'] === 'draw' ? null : intval($data['winner_id']),
                             'occurred_at' => $data['occurred_at'],
                         ]);
                     })
