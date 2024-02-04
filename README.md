@@ -1,3 +1,11 @@
+# Bit Academy deep dive one-week project February 2024
+
+In this one-week project, themed after the One-Punch Man universe, us four team members
+built and administrative dashboard and [ELO-rating](https://en.wikipedia.org/wiki/Elo_rating_system)
+system, on behalf of the fictional Hero Association. Project readme continues below:
+
+---
+
 # One Punch Man deep dive
 
 This repository is home to the source code of the Heroes Association's new Hero Management
